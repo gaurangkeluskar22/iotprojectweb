@@ -96,7 +96,7 @@ class App extends Component {
             </div>
           </form>
 
-          <p className={this.state.status === "OPEN" ? "badge badge-danger p-3 m-2" : "badge badge-success p-3 m-2"}>Status : {this.state.status}</p>
+          <p className={this.state.status === "OPEN" ? "badge badge-danger p-2 m-3" : "badge badge-success p-2 m-3"}>Status : {this.state.status}</p>
         </center>
 
       </div>
