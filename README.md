@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## [https://doorlock.netlify.app](https://doorlock.netlify.app)
-## [https://iot-project-da695.web.app](https://iot-project-da695.web.app)
+
 
 ## Available Scripts
 
