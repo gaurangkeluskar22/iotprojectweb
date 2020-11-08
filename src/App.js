@@ -4,6 +4,23 @@ import './App.css';
 import Firebase from 'firebase';
 
 class App extends Component {
+  componentDidMount(){
+    const data1 = Firebase.database().ref('data');
+    data1.on("value",datasnap=>{
+      this.setState({status:datasnap.val().option});
+    });
+    this.fun();
+  }
+
+  fun=()=>{
+  if(this.state.status==='OPEN'){
+    this.setState({color:'badge badge-danger p-2 m-3'});
+  }
+  else{
+    this.setState({color:'badge badge-success p-2 m-3'});
+  }
+}
+  
   constructor(props) {
     super(props);
 
@@ -26,11 +43,12 @@ class App extends Component {
        }
     
 
-    this.state = { textvalue: '', optionvalue: '' };
+    this.state = { textvalue: '', optionvalue: '' ,status:'',color:''};
 
     this.handletextchange = this.handletextchange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleoptionchage = this.handleoptionchage.bind(this);
+
   }
 
   handletextchange(event) {
@@ -41,6 +59,13 @@ class App extends Component {
   }
 
   handleSubmit(event) {
+    if(this.state.status==='OPEN'){
+      this.setState({color:'badge badge-danger p-2 m-3'});
+    }
+    else{
+      this.setState({color:'badge badge-success p-2 m-3'});
+    }
+
     const password = 'iotproject1234';
 
     if (this.state.textvalue !== password) {
@@ -56,6 +81,8 @@ class App extends Component {
     }
      event.preventDefault();
   }
+
+
 
   render() {
     return (
@@ -81,6 +108,7 @@ class App extends Component {
               <button type="submit" className="btn btn-primary col-sm-3">Submit</button>
             </div>
           </form>
+    <p className={this.state.color}>Status : {this.state.status}</p>
         </center>
 
       </div>
