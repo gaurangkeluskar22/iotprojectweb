@@ -4,47 +4,39 @@ import './App.css';
 import Firebase from 'firebase';
 
 class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     const data1 = Firebase.database().ref('data');
-    data1.on("value",datasnap=>{
-      this.setState({status:datasnap.val().option});
+    data1.on("value", datasnap => {
+      this.setState({ status: datasnap.val().option });
     });
-    this.fun();
-    //calling to function
+
   }
 
-  fun=()=>{
-  if(this.state.status==='OPEN'){
-    this.setState({color:'badge badge-danger p-2 m-3'});
-  }
-  else{
-    this.setState({color:'badge badge-success p-2 m-3'});
-  }
-}
-  
+
+
   constructor(props) {
     super(props);
 
-      const config = {
-        apiKey: "AIzaSyD_Jt101lRcgoy0dUcUhBLSkxRDc-6ntro",
-        authDomain: "iot-project-da695.firebaseapp.com",
-        databaseURL: "https://iot-project-da695.firebaseio.com",
-        projectId: "iot-project-da695",
-        storageBucket: "iot-project-da695.appspot.com",
-        messagingSenderId: "108153433301",
-        appId: "1:108153433301:web:9a3f8f9be79135b33fc65c",
-        measurementId: "G-XNGP69WFRM"
-      };
+    const config = {
+      apiKey: "AIzaSyD_Jt101lRcgoy0dUcUhBLSkxRDc-6ntro",
+      authDomain: "iot-project-da695.firebaseapp.com",
+      databaseURL: "https://iot-project-da695.firebaseio.com",
+      projectId: "iot-project-da695",
+      storageBucket: "iot-project-da695.appspot.com",
+      messagingSenderId: "108153433301",
+      appId: "1:108153433301:web:9a3f8f9be79135b33fc65c",
+      measurementId: "G-XNGP69WFRM"
+    };
 
-      if(!Firebase.apps.length){
-        Firebase.initializeApp(config);
-       }
-       else{
-          Firebase.app();
-       }
-    
+    if (!Firebase.apps.length) {
+      Firebase.initializeApp(config);
+    }
+    else {
+      Firebase.app();
+    }
 
-    this.state = { textvalue: '', optionvalue: '' ,status:'',color:''};
+
+    this.state = { textvalue: '', optionvalue: '', status: ''};
 
     this.handletextchange = this.handletextchange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,12 +52,6 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    if(this.state.status==='OPEN'){
-      this.setState({color:'badge badge-danger p-2 m-3'});
-    }
-    else{
-      this.setState({color:'badge badge-success p-2 m-3'});
-    }
 
     const password = 'iotproject1234';
 
@@ -80,7 +66,7 @@ class App extends Component {
         }
       );
     }
-     event.preventDefault();
+    event.preventDefault();
   }
 
 
@@ -109,7 +95,8 @@ class App extends Component {
               <button type="submit" className="btn btn-primary col-sm-3">Submit</button>
             </div>
           </form>
-    <p className={this.state.color}>Status : {this.state.status}</p>
+
+          <p className={this.state.status === "OPEN" ? "badge badge-danger p-3 m-2" : "badge badge-success p-3 m-2"}>Status : {this.state.status}</p>
         </center>
 
       </div>
