@@ -10,6 +10,7 @@ class App extends Component {
       this.setState({status:datasnap.val().option});
     });
     this.fun();
+    //calling to function
   }
 
   fun=()=>{
